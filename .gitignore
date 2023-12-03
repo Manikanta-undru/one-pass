@@ -1,0 +1,22 @@
+# Node.js
+node_modules/
+
+# Next.js build output
+.next/
+
+
+
+# Log files
+*.log
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.iml
+
+# Dependency lock files
+yarn.lock
+package-lock.json
+
+# Build output
+out/
