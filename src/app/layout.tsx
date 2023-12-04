@@ -9,6 +9,7 @@ import Header from "./components/header";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import { MdPassword } from "react-icons/md";
+import { Toaster } from "react-hot-toast";
 import { auth } from "@/config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -21,6 +22,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Toaster
+        toastOptions={{
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        }}
+      />
       <body className={inter.className}>
         <AuthProvider>
           <Header />

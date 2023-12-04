@@ -5,8 +5,10 @@ import { MdPassword } from "react-icons/md";
 import { logOut } from "../../config/firebase";
 import { redirect } from "next/navigation";
 import { useAuth } from "@/config/auth";
+import PassPhraseModel from "./passPhraseModel";
 
 const Header: React.FC = () => {
+  const [showPassPhraseModel, setShowPassPhraseModel] = React.useState(false);
   const { currentUser } = useAuth();
   const logOutUser = async () => {
     await logOut();
@@ -15,6 +17,9 @@ const Header: React.FC = () => {
 
   return (
     <header className=" flex justify-between p-4 px-6 fixed left-0 right-0 ">
+      {showPassPhraseModel && (
+        <PassPhraseModel setShowPassPhraseModel={setShowPassPhraseModel} />
+      )}
       <div className=" flex  items-center text-lg gap-1 text-primary font-bold uppercase">
         <MdPassword className="text-3xl" />
         <h1>
@@ -23,12 +28,20 @@ const Header: React.FC = () => {
       </div>
       <div className="flex  items-center">
         {currentUser && (
-          <button
-            onClick={logOutUser}
-            className="text-primary rounded-2xl uppercase font-bold text-xs  mr-4  "
-          >
-            Sign Out
-          </button>
+          <>
+            <button
+              onClick={() => setShowPassPhraseModel(true)}
+              className="text-primary rounded-2xl uppercase font-bold text-xs  mr-4  "
+            >
+              Set PassPhrase
+            </button>
+            <button
+              onClick={logOutUser}
+              className="text-primary rounded-2xl uppercase font-bold text-xs  mr-4  "
+            >
+              Sign Out
+            </button>
+          </>
         )}
         <img
           src={currentUser?.photoURL || "/vercel.svg"}

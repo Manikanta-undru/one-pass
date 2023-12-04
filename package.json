@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "btoa-atob": "^0.1.2",
     "firebase": "^10.7.0",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^4.12.0"
   },
   "devDependencies": {

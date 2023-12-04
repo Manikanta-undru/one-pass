@@ -37,12 +37,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
-      setCurrentUser(user);
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user || null);
       setLoading(false);
     });
 
-    return unsubscribe;
+    return () => unsubscribe();
   }, []);
 
   const value = {
