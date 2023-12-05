@@ -42,11 +42,6 @@ const PassPhraseModel: React.FC<PassPhraseModelProps> = ({
 
         return;
       } else {
-        const data = query.data() || null;
-        const isPassphraseCorrect = await crypto.checkPassphrase(
-          passphrase,
-          data?.passphrase
-        );
         const confirm = window.confirm(
           "Passphrase already set! Are you sure you want to update your passphrase?"
         );
