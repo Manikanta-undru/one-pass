@@ -1,5 +1,4 @@
-import { useAuth } from "@/config/auth";
-import { db, getExistingUserData } from "@/config/firebase";
+import React, { useState } from "react";
 import {
   addDoc,
   collection,
@@ -9,9 +8,11 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import React, { useState } from "react";
-import toast from "react-hot-toast";
+import { db, getExistingUserData } from "@/config/firebase";
+
 import { crypto } from "@/config/crypto";
+import toast from "react-hot-toast";
+import { useAuth } from "@/config/auth";
 
 interface PassPhraseModelProps {
   setShowPassPhraseModel: React.Dispatch<React.SetStateAction<boolean>>;
@@ -32,11 +33,7 @@ const PassPhraseModel: React.FC<PassPhraseModelProps> = ({
       const hashedPassphrase = await crypto.hashPassphrase(passphrase);
 
       const query = await getExistingUserData(currentUser?.uid);
-      const data = query.data() || null;
-      const isPassphraseCorrect = await crypto.checkPassphrase(
-        passphrase,
-        data?.passphrase
-      );
+
       if (!query) {
         const setDoc = await addDoc(collection(db, "users"), {
           uid: currentUser?.uid,
@@ -45,6 +42,11 @@ const PassPhraseModel: React.FC<PassPhraseModelProps> = ({
 
         return;
       } else {
+        const data = query.data() || null;
+        const isPassphraseCorrect = await crypto.checkPassphrase(
+          passphrase,
+          data?.passphrase
+        );
         const confirm = window.confirm(
           "Passphrase already set! Are you sure you want to update your passphrase?"
         );
