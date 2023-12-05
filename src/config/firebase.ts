@@ -1,21 +1,21 @@
 import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-
 import { collection, deleteDoc, doc, getDocs, getFirestore, limit, orderBy, query, where } from "firebase/firestore";
+
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDT-hax0XpZdwtTtv0_TFMoz-pVsROzYho",
-    authDomain: "onepass-2677e.firebaseapp.com",
-    projectId: "onepass-2677e",
-    storageBucket: "onepass-2677e.appspot.com",
-    messagingSenderId: "160760694129",
-    appId: "1:160760694129:web:41af81534bc80c1d9122d0"
-};
+    apiKey: "AIzaSyARPEhLT49Zy2yyqALoxQY4TSjVw7NEgiM",
+    authDomain: "o1pass.firebaseapp.com",
+    projectId: "o1pass",
+    storageBucket: "o1pass.appspot.com",
+    messagingSenderId: "726209497561",
+    appId: "1:726209497561:web:f825dada2cae9019f171c8"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db =getFirestore(app);
+const db = getFirestore(app);
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({   
